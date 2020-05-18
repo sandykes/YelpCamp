@@ -1,6 +1,4 @@
 var express= require('express');
-var MongoClient  = require('mongodb').MongoClient;
-
 var app=express();
 var bodyParser=require("body-parser");
 var port=5000;
@@ -32,33 +30,3 @@ app.get("/campgrounds/new",function(req,res){
 app.listen(port,function(){
   console.log("The YelpCamp server is running on http://localhost:"+port);
 });
-
-app.get("/mong",function(req,res){
-
-const uri = "mongodb+srv://raymongo:React2020@cluster0mongo-xnji2.mongodb.net/test?retryWrites=true&w=majorit";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("customerDB").collection("customerCollection");
-  // perform actions on the collection object
-  var query = {cname: 'rayudu'};
-  collection.find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result.length)
-    var i = 0;
-    for (i = 0; i < result.length; i++) {
-            
-    console.log("Result : "+ result[i].custid  );
-    console.log("Result : "+ result[i].cname   );
-    console.log("Result : "+ result[i].ccity   );
-    console.log("Result : "+ result[i].ccity   );
-    }
-    client.close();
-  });
-    res.render("partials/mong");
-});
-});
-
-function iterate(item, index) {
-    //console.log(`${item}[${index}] has index ${index}`);
-    console.log (`${item}[${index}].custid`);
-  }
